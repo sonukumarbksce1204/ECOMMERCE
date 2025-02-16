@@ -6,8 +6,15 @@ const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 connectDB();
-app.use(cors());
+
+// Fix CORS issues
+app.use(cors({ origin: "*" }));
 app.use(express.json());
+
+// Default Route (Fix for "Cannot GET /")
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 
 // Routes
 app.use("/api/users", userRoutes);
