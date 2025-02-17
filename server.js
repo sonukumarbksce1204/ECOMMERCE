@@ -7,8 +7,21 @@ const userRoutes = require("./routes/userRoutes");
 const app = express();
 connectDB();
 
-// Fix CORS issues
-app.use(cors({ origin: "*" }));
+// Fix CORS issues - Allow only your frontend domain
+const allowedOrigins = ['https://sonuecomern.netlify.app'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Default Route (Fix for "Cannot GET /")
