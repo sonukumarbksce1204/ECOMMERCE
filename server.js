@@ -8,7 +8,7 @@ const app = express();
 connectDB();
 
 // Fix CORS issues - Allow only your frontend domain
-const allowedOrigins = ['https://sonuecomern.netlify.app', 'http://localhost:3000'];
+const allowedOrigins = ['https://sonuecomern.netlify.app', 'http://localhost:3000','https://amanmernpro.netlify.app'];
 
 
 const corsOptions = {
